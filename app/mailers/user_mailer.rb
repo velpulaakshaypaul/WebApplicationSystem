@@ -1,11 +1,9 @@
 class UserMailer < ApplicationMailer
-  def welcome_email(user)
+  def welcome_email(user,body)
     @user = user
-  #  @url  = 'http://example.com/login'
-#<<<<<<< HEAD
-    mail(to: "velpulaakshaypaul@gmail.com", subject: 'Welcome to My Awesome Site')
-#=======
-    mail(to: "velpulaakshaypaul@gmail.com", subject: @user.firstname)
-#>>>>>>> e6b1b225c542ff112034bb5fade7eb2de6c16b30
+    @body=body
+
+    mail(to: "velpulaakshaypaul@gmail.com", subject: @user.firstname )
+
   end
 end

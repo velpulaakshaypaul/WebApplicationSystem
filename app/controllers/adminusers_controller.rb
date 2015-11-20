@@ -16,12 +16,18 @@ class AdminusersController < ApplicationController
     @adminuser = Adminuser.new
   end
     # <<<<<<< HEAD
-
+def viewcurrentapplicationprofile
+  @name=params[:firstname]
+end
   def sendemails
     @user=User.new( :firstname=> params[:subject] );
-    @Mailtester=UserMailer.welcome_email(@user).deliver
+    if params[:sendemailtoapplcant]=="true"
+    @Mailtester=UserMailer.welcome_email(@user,params[:body]).deliver
+    end
     #redirect_to :action => 'viewapplicantinformation'
   end
+
+
 # =======
 #
  def viewapplicants

@@ -1,15 +1,35 @@
-<html>
 
-<h1>Applicant Information</h1>
 
-<% @applicants.each do |applicant| %>
-  <p> First Name: <%= applicant.first_name %></p>
-  <p> Last Name: <%= applicant.last_name %></p>
-  <p> Email: <%= applicant.email %></p>
-  <p> Contact: <%= applicant.contact %></p>
-  <p> GPA: <%= applicant.gpa %></p>
-  <p> Credit Hours: <%= applicant.credit_hours %></p>
-<% end %>
+<head>
+<html >
+<div><h1>Applicant Information for job:<li><%=      @job.title %></li> </h1></div>
+  <body>
+  <table style="width:100%">
+      <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>ContactNumber</th>
+        <th>InterviewingOptions</th>
+        <th>ApplicationStatus</th>
+      </tr>
+      <tbody>
+      <% @applicants.each do |applicant| %>
+        <tr>
+          <td><%=  applicant.first_name%></td>
+          <td><%=  applicant.last_name %></td>
+          <td><%=  applicant.email %></td>
+          <td><%=  applicant.contact %></td>
+          <td><%=  link_to 'ViewApplicantProfile', viewcurrentapplicationprofile_adminusers_path(:firstname=> applicant.first_name), class: "btn btn-link" %></td>
+          <td> Needs Review </td>
+        </tr>
+        <% end %>
+      </tbody>
+  </table>
+</body>
 <%= link_to "Go Back", jobs_path %>
+
+
+</head>
 
 </html>
