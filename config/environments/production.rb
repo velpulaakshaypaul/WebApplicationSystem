@@ -77,7 +77,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
+config.log_level = :debug
   # Created as part of the devise gem installation. Should be changed once production URL is determined
 #  config.action_mailer.default_url_options = { host: 'velpulaakshaypaul@gmail.com', port: 3000 }
   config.assets.raise_runtime_errors = true
