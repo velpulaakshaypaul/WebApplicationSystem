@@ -87,11 +87,12 @@ config.action_mailer.smtp_settings = {
     address:"smtp.gmail.com",
     port:587,
     domain:"domain.of.sender.net",
-    authentication: "plain",
     user_name:"noreply.uwbv@gmail.com",
     password:"uwbvjobs123!",
-    enable_starttls_auto: true
-    :openssl_verify_mode => 'none' 
+    authentication: "plain",
+    enable_starttls_auto: true,
+      :openssl_verify_mode => 'none',  # This line added and it works fine
+
 }
 
   # Raises error for missing translations
