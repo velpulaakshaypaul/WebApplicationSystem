@@ -81,12 +81,21 @@ config.log_level = :debug
   # Created as part of the devise gem installation. Should be changed once production URL is determined
 #  config.action_mailer.default_url_options = { host: 'velpulaakshaypaul@gmail.com', port: 3000 }
   config.assets.raise_runtime_errors = true
+
+
+
+# config.action_mailer.default_url_options = { :host => 'myapp.herokuapp.com' }
+ config.action_mailer.default_url_options = { :host=> 'https://ancient-inlet-5923.herokuapp.com' }
+ config.action_mailer.delivery_method = :smtp
+ config.action_mailer.perform_deliveries = true
+ config.action_mailer.raise_delivery_errors = true
   #config.action_mailer.delivery_method = :smtp
-  config.action_mailer.delivery_method = :sendmail
+
+  #config.action_mailer.delivery_method = :sendmail
 config.action_mailer.smtp_settings = {
     address:"smtp.gmail.com",
     port:587,
-    domain:"domain.of.sender.net",
+      domain: 'gmail.com',
     user_name:"noreply.uwbv@gmail.com",
     password:"uwbvjobs123!",
     authentication: "plain",
@@ -99,6 +108,6 @@ config.action_mailer.smtp_settings = {
   # config.action_view.raise_on_missing_translations = true
 
   #created as part of the devise gem
-  config.action_mailer.default_url_options = { host: 'https://ancient-inlet-5923.herokuapp.com' }
+
 
 end
