@@ -91,6 +91,7 @@ config.action_mailer.smtp_settings = {
     user_name:"noreply.uwbv@gmail.com",
     password:"uwbvjobs123!",
     enable_starttls_auto: true
+    :openssl_verify_mode => 'none' 
 }
 
   # Raises error for missing translations
