@@ -93,14 +93,14 @@ Rails.application.configure do
 
   #config.action_mailer.delivery_method = :sendmail
 config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
+    :address => "smtp.mandrillapp.com",
     port:587,
     domain:"domain.of.sender.net",
     user_name:"noreply.uwbv@gmail.com",
-    password:"uwbvjobs123!",
+    password:"KR_dtef19KioX8OsyBDYAg",
     authentication: "plain",
     enable_starttls_auto: true,
-      :openssl_verify_mode => 'none',  # This line added and it works fine
+    #  :openssl_verify_mode => 'none',  # This line added and it works fine
 
 }
 
