@@ -85,15 +85,16 @@ config.log_level = :debug
 
 
 # config.action_mailer.default_url_options = { :host => 'myapp.herokuapp.com' }
- config.action_mailer.default_url_options = { :host=> 'https://ancient-inlet-5923.herokuapp.com' }
- config.action_mailer.delivery_method = :smtp
- config.action_mailer.perform_deliveries = true
+config.action_mailer.default_url_options = {:host => 'myapp.herokuapp.com', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
  config.action_mailer.raise_delivery_errors = true
+ config.action_mailer.delivery_method = :smtp
+
+ config.action_mailer.perform_deliveries = true
   #config.action_mailer.delivery_method = :smtp
 
   #config.action_mailer.delivery_method = :sendmail
 config.action_mailer.smtp_settings = {
-    address:"smtp.gmail.com",
+    :address => "smtp.gmail.com",
     port:587,
       domain: 'gmail.com',
     user_name:"noreply.uwbv@gmail.com",
