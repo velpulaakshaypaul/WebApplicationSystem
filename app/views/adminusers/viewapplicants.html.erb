@@ -20,7 +20,7 @@
           <td><%=  applicant.last_name %></td>
           <td><%=  applicant.email %></td>
           <td><%=  applicant.contact %></td>
-          <td><%=  link_to 'ViewApplicantProfile', viewcurrentapplicationprofile_adminusers_path(:firstname=> applicant.first_name), class: "btn btn-link" %></td>
+          <td><%=  link_to 'ViewApplicantProfile', viewcurrentapplicationprofile_adminusers_path(:applicant_id=> applicant.id), class: "btn btn-link" %></td>
           <td> Needs Review </td>
         </tr>
         <% end %>

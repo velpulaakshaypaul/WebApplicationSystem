@@ -1,23 +1,21 @@
 Rails.application.routes.draw do
 # <<<<<<< HEAD
   get '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-  resources :adminusers do
-    collection do
-    get 'viewapplicants'
-  end
-  end
-# =======
+
+
   resources :questions
   resources :questions
   resources :applicants
   resources :internship_applications
   resources :adminusers do
-    collection do
-     get 'sendemails'
-     get 'viewapplicants'
-    end
-    end
-# >>>>>>> e6b1b225c542ff112034bb5fade7eb2de6c16b30
+  collection do
+  get 'viewapplicants'
+  
+  get 'sendemails'
+
+  get 'viewcurrentapplicationprofile'
+end
+end
   resources :jobs
   devise_for :users
   get 'pages/about'
