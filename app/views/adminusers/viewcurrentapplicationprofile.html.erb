@@ -49,6 +49,7 @@ $( document ).ready(function() {
 
   $("#poll").click(function() {
    $('#datepicker').datepicker();
+   document.getElementById("datepicker").value = "";
    var InterviewCheckBox=document.getElementById("Interviewcheckbox");
 var emailcheckbox = document.getElementById("mycheckbox");
 emailcheckbox.checked = false;
@@ -59,7 +60,7 @@ emailContent.style.display="none"
 InterviewContent.style.display="none"
       $("#myDialog").dialog({height: 'auto', buttons: { "OK":
       function()
-      { var Status,interviewDate,InterviewStartTime,InterviewEndTime,emailbody,sendapplicantemail;
+      { var Status,interviewDate,InterviewStartTime,InterviewEndTime,emailbody,sendapplicantemail,displayalertmessage;
          Status=$("#applicationstatus").val() ;
       //   interviewDate=$("#datepicker").val().split("-");
          InterviewDate=$("#datepicker").val();
@@ -67,11 +68,16 @@ InterviewContent.style.display="none"
       //   var InterviewDate = new Date(interviewDate=[2], interviewDate=[1] - 1, interviewDate=[0]);
          InterviewStartTime=$("#time").val() ;
          InterviewEndTime=$("#endtime").val() ;
+
+         if(($('#Interviewcheckbox').is(':checked')&& (InterviewDate!="")||((!$('#Interviewcheckbox').is(':checked'))&& (InterviewDate==""))))
+         displayalertmessage="false";
+         else
+         displayalertmessage="true";
          if($('#mycheckbox').is(':checked'))
           sendapplicantemail="true"
           else
           sendapplicantemail="false"
-         if(InterviewDate!="")
+         if(displayalertmessage=="false")
          {
 
          $.ajax({type: 'GET', url: '/adminusers/sendemails',dataType: 'script',data: { body: ( emailbody) ,subject: ("Interview scheduled for "+ InterviewDate),type: "offer", sendemailtoapplcant:sendapplicantemail } });
@@ -91,15 +97,27 @@ InterviewContent.style.display="none"
 </script>
     <div id="myDialog" class="flora" title="Schedule Interview options" style="display: none;">
       <br>
-      <p>Interview Scheduling Options for</p>
+      <h6>What would you like to do</h6>
         <%= @name %></li>
-      </br>
-      Change Application Status:<select id="applicationstatus">
-        <option value="NeedsReview">NeedsReview</option>
-        <option value="Under Review<">Under Review</option>
-        <option value="Finished Processing">Finished Processing</option>
-        <option value="Match not Ideal">Match not Ideal</option>
-      </select>
+      <u>Change Application Status:</u><input type="checkbox" name="Applicationcheckbox" id="Applicationcheckbox" autocomplete="off" value="Clickme" />
+  <div id="ApplicationStatus" style="display: none">
+          <select id="applicationstatus">
+            <option value="NeedsReview">NeedsReview</option>
+            <option value="Under Review<">Under Review</option>
+            <option value="Finished Processing">Finished Processing</option>
+            <option value="Match not Ideal">Match not Ideal</option>
+          </select>
+      </div>
+      <script type="text/javascript">
+      $('#Applicationcheckbox').change(function() {
+      var ApplicationStatusContent = document.getElementById("ApplicationStatus");
+      //    $('#mycheckboxdiv').style.display = "block";
+      if($('#Applicationcheckbox').is(':checked'))
+      ApplicationStatusContent.style.display = "block";
+      else
+      ApplicationStatusContent.style.display = "none";
+      });
+      </script>
         <!-- add styles -->
 
 
@@ -107,8 +125,7 @@ InterviewContent.style.display="none"
         Interview Time: <input type="text" id="time_name" /> -->
 
         <!-- Adding calendar functionality-->
-</br>
-     Sechdule Interview With Applicant:<input type="checkbox" name="Interviewcheckbox" id="Interviewcheckbox" autocomplete="off" value="Clickme" />
+    <u> Schedule Interview With Applicant:</u><input type="checkbox" name="Interviewcheckbox" id="Interviewcheckbox" autocomplete="off" value="Clickme" />
       <div id="InterviewingOptions" style="display: none">
         Interview Date: <input id="datepicker" type="text" width="auto" height="auto"/>
         Interview Start Time :  <br><select name="time" id="time">
@@ -310,12 +327,15 @@ $('#Interviewcheckbox').change(function() {
 var InterviewContent = document.getElementById("InterviewingOptions");
 //    $('#mycheckboxdiv').style.display = "block";
 if($('#Interviewcheckbox').is(':checked'))
+{
+document.getElementById("datepicker").value = "";//reset the datepicker to an empty box
 InterviewContent.style.display = "block";
+}
 else
 InterviewContent.style.display = "none";
 });
 </script>
-      Send Email To Applicant:<input type="checkbox" name="mycheckbox" id="mycheckbox" autocomplete="off" value="Clickme" />
+      <u>Send Email To Applicant:</u><input type="checkbox" name="mycheckbox" id="mycheckbox" autocomplete="off" value="Clickme" />
       <div id="mycheckboxdiv" style="display: none">
           Email Body:<textarea id="interviewemail"> you have been selected for the next round</textarea>
       </div>
